@@ -5,9 +5,12 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const PORT = 5000 
 const bddconnectionTest = require('./routes/bdd.route')
+const authControllers = require('./routes/auth.route')
+
+
 app.use(
   cors({
-    origin: '*',
+    origin: 'https://routefrontend.vercel.app',
     methods : ['GET' , 'DELETE' , 'POST' , 'PUT' , 'OPTIONS'] ,
     credentials: true, 
      allowedHeaders : ['Content-Type' , 'Authorization' , 'Cookie']
@@ -16,6 +19,8 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
  app.use('/api' , bddconnectionTest)
+ app.use('/api' , authControllers)
+
 
 //npm run dev 
 if (process.env.NODE_ENV !== "production") {
