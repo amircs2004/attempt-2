@@ -102,9 +102,12 @@ const logout = async (req, res) => {
 };
 const getProfile = async (req , res) => {
    try {
+
     await coonectedDatabase() 
+
     const userAccount = await User.findById(req.user.id)
-    return  res.status(200).json({ data: user });
+
+    return  res.status(200).json({ data: userAccount });
  
    } catch (error) {
    return res.status(500).json({ message: "Server error" });

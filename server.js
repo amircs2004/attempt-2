@@ -6,6 +6,8 @@ const cors = require("cors");
 const PORT = 5000 
 const bddconnectionTest = require('./routes/bdd.route')
 const authControllers = require('./routes/auth.route')
+const ClientProductRoutes = require('./routes/product.route')
+
 
 
 app.use(
@@ -20,6 +22,9 @@ app.use(cookieParser());
 app.use(express.json());
  app.use('/api' , bddconnectionTest)
  app.use('/api' , authControllers)
+ app.use('/api' , ClientProductRoutes)
+
+
 
 
 //npm run dev 
