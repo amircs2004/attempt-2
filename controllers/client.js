@@ -67,35 +67,33 @@ const getAllOrders = async (req, res) => {
 }
 const updateProductQuantityInOrder = async (req, res) => {
   try {
-    await coonectedDatabase(); // Always call the database connection function
+    await coonectedDatabase();
 
-    const userId = req.user.id; // Matches your JWT payload: id: newUser._id
+    const userId = req.user.id;
     const { productId } = req.params;
     const { change, orderId } = req.body;
 
-    // SECURITY CHECK: Ensure the order exists AND belongs to the logged-in user
     const order = await Order.findOne({ _id: orderId, userId });
     if (!order) {
       return res.status(404).json({ message: "Order not found or unauthorized" });
     }
 
-    // Convert productId to Number to match your schema type
     const targetProductId = Number(productId);
-
-    // Find the item inside the order items array
-    const item = order.items.find((i) => i.productId === targetProductId);
+    const item = order.items.find((i) => Number(i.productId) === targetProductId);
 
     if (!item) {
       return res.status(404).json({ message: "Product not found in order" });
     }
 
-    // Update quantity (increases if +1, decreases if -1)
-    item.quantity += change;
+    // Safely enforce numbers to completely prevent NaN errors
+    const currentQty = Number(item.quantity) || 1;
+    const numericChange = Number(change) || 0;
 
-    // If quantity drops to 0 or below, remove the item entirely
+    item.quantity = currentQty + numericChange;
+
     if (item.quantity <= 0) {
       order.items = order.items.filter(
-        (i) => i.productId !== targetProductId
+        (i) => Number(i.productId) !== targetProductId
       );
     }
 
@@ -104,7 +102,7 @@ const updateProductQuantityInOrder = async (req, res) => {
 
   } catch (error) {
     console.error("Error updating product quantity:", error);
-    return res.status(500).json({ success: false, message: "Server error" });
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
 
