@@ -13,7 +13,7 @@ const ClientProductRoutes = require('./routes/product.route')
 app.use(
   cors({
     origin: 'https://routefrontend.vercel.app',
-    methods : ['GET' , 'DELETE' , 'POST' , 'PUT' , 'OPTIONS'] ,
+    methods : ['GET' , 'DELETE' , 'POST' , 'PUT' , 'PATCH' , 'OPTIONS'] ,
     credentials: true, 
      allowedHeaders : ['Content-Type' , 'Authorization' , 'Cookie']
   })
