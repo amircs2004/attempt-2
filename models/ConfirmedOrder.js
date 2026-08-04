@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const confirmedOrderSchema = new mongoose.Schema(
   {
@@ -8,7 +8,6 @@ const confirmedOrderSchema = new mongoose.Schema(
       required: true,
       index: true,
     },
-    // Snapshot of items at time of purchase
     items: [
       {
         productId: { 
@@ -26,12 +25,15 @@ const confirmedOrderSchema = new mongoose.Schema(
       street: String,
       city: String,
       postalCode: String,
+      formattedAddress: String, // Map address string
+      lat: Number,              // Map latitude
+      lng: Number,              // Map longitude
     },
     paymentMethod: { type: String, required: true },
     paymentStatus: {
       type: String,
       enum: ['pending', 'paid', 'failed'],
-      default: 'paid',
+      default: 'pending',
     },
     orderStatus: {
       type: String,
@@ -42,4 +44,4 @@ const confirmedOrderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.ConfirmedOrder || mongoose.model('ConfirmedOrder', confirmedOrderSchema);
+module.exports = mongoose.models.ConfirmedOrder || mongoose.model('ConfirmedOrder', confirmedOrderSchema);

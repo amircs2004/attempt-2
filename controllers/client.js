@@ -65,7 +65,7 @@ const getAllOrders = async (req, res) => {
     console.error(error);
     return res.status(500).json({ success: false, message: "Server error" });
   }
-}
+};
 const updateProductQuantityInOrder = async (req, res) => {
   try {
     await coonectedDatabase();
@@ -76,11 +76,15 @@ const updateProductQuantityInOrder = async (req, res) => {
 
     const order = await Order.findOne({ _id: orderId, userId });
     if (!order) {
-      return res.status(404).json({ message: "Order not found or unauthorized" });
+      return res
+        .status(404)
+        .json({ message: "Order not found or unauthorized" });
     }
 
     const targetProductId = Number(productId);
-    const item = order.items.find((i) => Number(i.productId) === targetProductId);
+    const item = order.items.find(
+      (i) => Number(i.productId) === targetProductId,
+    );
 
     if (!item) {
       return res.status(404).json({ message: "Product not found in order" });
@@ -94,13 +98,14 @@ const updateProductQuantityInOrder = async (req, res) => {
 
     if (item.quantity <= 0) {
       order.items = order.items.filter(
-        (i) => Number(i.productId) !== targetProductId
+        (i) => Number(i.productId) !== targetProductId,
       );
     }
 
     await order.save();
-    return res.status(200).json({ message: "Quantity updated successfully", order });
-
+    return res
+      .status(200)
+      .json({ message: "Quantity updated successfully", order });
   } catch (error) {
     console.error("Error updating product quantity:", error);
     return res.status(500).json({ success: false, message: error.message });
@@ -112,24 +117,35 @@ const confirmOrder = async (req, res) => {
     await coonectedDatabase();
 
     const userId = req.user.id;
-    const { itemsDetails, totalAmount, shippingAddress, paymentMethod } = req.body;
+    const { itemsDetails, totalAmount, shippingAddress, paymentMethod } =
+      req.body;
 
     // 1. Fetch the user's active cart
     const foundOrder = await Order.findOne({ userId, status: "active" });
 
     if (!foundOrder || foundOrder.items.length === 0) {
-      return res.status(404).json({ message: 'No active order found or cart is empty.' });
+      return res
+        .status(404)
+        .json({ message: "No active order found or cart is empty." });
     }
 
     // 2. Create the permanent ConfirmedOrder document
-    const createdConfirmedOrder = await ConfirmedOrder.create({
+    const createdConfirmedOrder = await confirmedOrder.create({
       userId,
       items: itemsDetails || [], // Array of snapshot objects: { productId, title, priceAtPurchase, quantity, thumbnail }
       totalAmount: totalAmount || 0,
-      shippingAddress,
-      paymentMethod: paymentMethod || 'Cash on Delivery',
-      paymentStatus: 'pending',
-      orderStatus: 'processing',
+      shippingAddress: {
+        street: shippingAddress.street || "",
+        city: shippingAddress.city || "",
+        postalCode: shippingAddress.postalCode || "",
+        formattedAddress:
+          shippingAddress.formattedAddress || shippingAddress.street,
+        lat: shippingAddress.lat || null,
+        lng: shippingAddress.lng || null,
+      },
+      paymentMethod: paymentMethod || "Cash on Delivery",
+      paymentStatus: "pending",
+      orderStatus: "processing",
     });
 
     // 3. Delete the active cart from Order collection
@@ -137,16 +153,21 @@ const confirmOrder = async (req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: 'Order placed successfully!',
+      message: "Order placed successfully!",
       order: createdConfirmedOrder,
     });
-
   } catch (error) {
     console.error("Confirm Order Error:", error);
-    return res.status(500).json({ error: error.message || 'Server error confirming order.' });
+    return res
+      .status(500)
+      .json({ error: error.message || "Server error confirming order." });
   }
 };
 
-
-
-module.exports = { addProductToOrder, removeProductFromOrder, getAllOrders  , updateProductQuantityInOrder , confirmOrder};
+module.exports = {
+  addProductToOrder,
+  removeProductFromOrder,
+  getAllOrders,
+  updateProductQuantityInOrder,
+  confirmOrder,
+};
