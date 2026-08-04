@@ -1,4 +1,5 @@
 const Order = require("../models/order");
+const confirmedOrder = require("../models/ConfirmedOrder");
 const coonectedDatabase = require("../connection/connection");
 
 // ADD PRODUCT TO ORDER
@@ -106,4 +107,46 @@ const updateProductQuantityInOrder = async (req, res) => {
   }
 };
 
-module.exports = { addProductToOrder, removeProductFromOrder, getAllOrders  , updateProductQuantityInOrder};
+const confirmOrder = async (req, res) => {
+  try {
+    await coonectedDatabase();
+
+    const userId = req.user.id;
+    const { itemsDetails, totalAmount, shippingAddress, paymentMethod } = req.body;
+
+    // 1. Fetch the user's active cart
+    const foundOrder = await Order.findOne({ userId, status: "active" });
+
+    if (!foundOrder || foundOrder.items.length === 0) {
+      return res.status(404).json({ message: 'No active order found or cart is empty.' });
+    }
+
+    // 2. Create the permanent ConfirmedOrder document
+    const createdConfirmedOrder = await ConfirmedOrder.create({
+      userId,
+      items: itemsDetails || [], // Array of snapshot objects: { productId, title, priceAtPurchase, quantity, thumbnail }
+      totalAmount: totalAmount || 0,
+      shippingAddress,
+      paymentMethod: paymentMethod || 'Cash on Delivery',
+      paymentStatus: 'pending',
+      orderStatus: 'processing',
+    });
+
+    // 3. Delete the active cart from Order collection
+    await Order.deleteOne({ _id: foundOrder._id });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Order placed successfully!',
+      order: createdConfirmedOrder,
+    });
+
+  } catch (error) {
+    console.error("Confirm Order Error:", error);
+    return res.status(500).json({ error: error.message || 'Server error confirming order.' });
+  }
+};
+
+
+
+module.exports = { addProductToOrder, removeProductFromOrder, getAllOrders  , updateProductQuantityInOrder , confirmOrder};

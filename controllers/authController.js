@@ -72,6 +72,7 @@ const login = async (req, res) => {
     if (!isPassWordMatch) {
       return res.status(401).json({ msg: "password not matched" });
     }
+    //this code has problem that im senfing the password in the response so i need to remove it from the response and send only the user data without the password
     const payLoad = {
       id: foundUser._id,
       email: foundUser.email,
