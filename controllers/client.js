@@ -128,11 +128,12 @@ const confirmOrder = async (req, res) => {
         .status(404)
         .json({ message: "No active order found or cart is empty." });
     }
+  
 
     // 2. Create the permanent ConfirmedOrder document
     const createdConfirmedOrder = await confirmedOrder.create({
       userId,
-      items: itemsDetails || [], // Array of snapshot objects: { productId, title, priceAtPurchase, quantity, thumbnail }
+      items: foundOrder.items || [], // Array of snapshot objects: { productId, title, priceAtPurchase, quantity, thumbnail }
       totalAmount: totalAmount || 0,
       shippingAddress: {
         street: shippingAddress.street || "",
