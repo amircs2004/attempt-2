@@ -41,7 +41,9 @@ const register = async (req, res) => {
         id: newUser._id,
         role: "Customer",
       };
-    } else {
+    } 
+    
+    else {
       return res.status(400).json({ msg: "Invalid or missing role specified" });
     }
 
@@ -116,9 +118,81 @@ const getProfile = async (req , res) => {
    }
 } 
 
+const googleAuth = async (req, res) => {
+  const { role } = req.body; 
+
+  try {
+    await coonectedDatabase();
+
+    // req.authUser comes directly from your verifySupabaseToken middleware
+    const { id: supabaseId, email, user_metadata } = req.authUser;
+    const normalizedEmail = email.toLowerCase().trim();
+    
+    // Extract name from Google metadata or fallback to email prefix
+    const rawName = user_metadata?.full_name || user_metadata?.name || normalizedEmail.split('@')[0];
+
+    // 1. Check if user already exists in MongoDB by supabaseId or email
+    let existingUser = await User.findOne({ 
+      $or: [{ supabaseId }, { email: normalizedEmail }] 
+    });
+
+    if (existingUser) {
+      // If they originally registered with email/password, bind their new supabaseId
+      if (!existingUser.supabaseId) {
+        existingUser.supabaseId = supabaseId;
+        await existingUser.save();
+      }
+
+      // Remove password before sending user data in response
+      const userResponse = existingUser.toObject();
+      delete userResponse.password;
+
+      return res.status(200).json({
+        msg: "Google user logged in successfully",
+        data: userResponse,
+      });
+    }
+
+    // 2. If user doesn't exist, register them based on the requested role
+    if (!role || (role !== "Driver" && role !== "Customer")) {
+      return res.status(400).json({ msg: "Invalid or missing role specified for Google registration" });
+    }
+
+    let newUser;
+    if (role === "Driver") {
+      newUser = await Driver.create({
+        supabaseId,
+        name: rawName.toLowerCase().trim(),
+        email: normalizedEmail,
+        role: "Driver",
+      });
+    } else if (role === "Customer") {
+      newUser = await Customer.create({
+        supabaseId,
+        name: rawName.toLowerCase().trim(),
+        email: normalizedEmail,
+        role: "Customer",
+      });
+    }
+
+    // Remove password field before response
+    const userResponse = newUser.toObject();
+    delete userResponse.password;
+
+    return res.status(201).json({
+      msg: "User registered successfully via Google Auth",
+      data: userResponse,
+    });
+
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 module.exports = {
   register,
   login,
   logout,
-  getProfile
+  getProfile , 
+  googleAuth
 };

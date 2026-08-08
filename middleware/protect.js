@@ -4,7 +4,8 @@ const protect = async (req , res ,next) => {
    try {
 
 const authHeader = req.headers.authorization 
-    let  token = req.cookies.cookie 
+    //mt cookie name is refresh 
+   let  token = req.cookies.refreshToken 
    if (!token && authHeader && authHeader.startsWith('Bearer ')) {
      token = authHeader.split(' ')[1];
    }

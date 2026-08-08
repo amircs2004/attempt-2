@@ -7,8 +7,10 @@ const PORT = 5000
 const bddconnectionTest = require('./routes/bdd.route')
 const authControllers = require('./routes/auth.route')
 const ClientProductRoutes = require('./routes/product.route')
+const adminRoutes = require('./routes/adlin.route')
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+
 
 //limitting the number of requests to prevent brute force attacks 
 app.use(helmet()); 
@@ -41,6 +43,8 @@ app.use(express.json({ limit: "10kb" }));
  app.use('/api' , bddconnectionTest)
  app.use('/api' , authControllers)
  app.use('/api' , ClientProductRoutes)
+ app.use('/api' , adminRoutes)
+
 
 
 

@@ -1,0 +1,802 @@
+[
+  {
+    "name": "amine boudiaf",
+    "email": "amine.boudiaf@example.com",
+    "password": "$2b$10$hashedpasswordexample1",
+    "role": "Driver",
+    "Car": "Renault Symbol",
+    "phoneNumber": 555019283
+  },
+  {
+    "name": "khaled mern",
+    "email": "khaled.m@example.com",
+    "password": "$2b$10$hashedpasswordexample2",
+    "role": "Driver",
+    "Car": "Dacia Logan",
+    "phoneNumber": 555987654
+  },
+  {
+    "name": "karim tlemçani",
+    "email": "karim.t@example.com",
+    "password": "$2b$10$hashedpasswordexample3",
+    "role": "Driver",
+    "Car": "Hyundai Accent",
+    "phoneNumber": 555432109
+  },
+  {
+    "name": "nabil ould",
+    "email": "nabil.o@example.com",
+    "password": "$2b$10$hashedpasswordexample4",
+    "role": "Driver",
+    "Car": "Peugeot 301",
+    "phoneNumber": 555111222
+  },
+  {
+    "name": "riad bouzid",
+    "email": "riad.b@example.com",
+    "password": "$2b$10$hashedpasswordexample5",
+    "role": "Driver",
+    "Car": "Volkswagen Polo",
+    "phoneNumber": 555777888
+  },
+  {
+    "name": "hamza ferhat",
+    "email": "hamza.f@example.com",
+    "password": "$2b$10$hashedpasswordexample6",
+    "role": "Driver",
+    "Car": "Toyota Corolla",
+    "phoneNumber": 555333444
+  },
+  {
+    "name": "tarik khelladi",
+    "email": "tarik.k@example.com",
+    "password": "$2b$10$hashedpasswordexample7",
+    "role": "Driver",
+    "Car": "Kia Rio",
+    "phoneNumber": 555666555
+  },
+  {
+    "name": "samir guergour",
+    "email": "samir.g@example.com",
+    "password": "$2b$10$hashedpasswordexample8",
+    "role": "Driver",
+    "Car": "Skoda Rapid",
+    "phoneNumber": 555888999
+  },
+  {
+    "name": "mustapha sassi",
+    "email": "mustapha.s@example.com",
+    "password": "$2b$10$hashedpasswordexample9",
+    "role": "Driver",
+    "Car": "Seat Ibiza",
+    "phoneNumber": 555222333
+  },
+  {
+    "name": "sofiane merad",
+    "email": "sofiane.m@example.com",
+    "password": "$2b$10$hashedpasswordexample10",
+    "role": "Driver",
+    "Car": "Renault Logan",
+    "phoneNumber": 555444111
+  },
+  {
+    "name": "redouane djelloul",
+    "email": "redouane.d@example.com",
+    "password": "$2b$10$hashedpasswordexample11",
+    "role": "Driver",
+    "Car": "Citroen C-Elysee",
+    "phoneNumber": 555999000
+  },
+  {
+    "name": "ahmed boukhalfa",
+    "email": "ahmed.b@example.com",
+    "password": "$2b$10$hashedpasswordexample12",
+    "role": "Driver",
+    "Car": "Nissan Sunny",
+    "phoneNumber": 555000111
+  },
+  {
+    "name": "kamel benyahia",
+    "email": "kamel.b@example.com",
+    "password": "$2b$10$hashedpasswordexample13",
+    "role": "Driver",
+    "Car": "Hyundai Elantra",
+    "phoneNumber": 555123789
+  },
+  {
+    "name": "mohamed sebti",
+    "email": "mohamed.s@example.com",
+    "password": "$2b$10$hashedpasswordexample14",
+    "role": "Driver",
+    "Car": "Renault Symbol",
+    "phoneNumber": 555112233
+  },
+  {
+    "name": "salim meziani",
+    "email": "salim.m@example.com",
+    "password": "$2b$10$hashedpasswordexample15",
+    "role": "Driver",
+    "Car": "Dacia Duster",
+    "phoneNumber": 555223344
+  },
+  {
+    "name": "bilal brahimi",
+    "email": "bilal.b@example.com",
+    "password": "$2b$10$hashedpasswordexample16",
+    "role": "Driver",
+    "Car": "Kia Picanto",
+    "phoneNumber": 555334455
+  },
+  {
+    "name": "omar meghari",
+    "email": "omar.m@example.com",
+    "password": "$2b$10$hashedpasswordexample17",
+    "role": "Driver",
+    "Car": "Peugeot 208",
+    "phoneNumber": 555445566
+  },
+  {
+    "name": "yacine benali",
+    "email": "yacine.b@example.com",
+    "password": "$2b$10$hashedpasswordexample18",
+    "role": "Driver",
+    "Car": "Volkswagen Golf",
+    "phoneNumber": 555556677
+  },
+  {
+    "name": "islem mansouri",
+    "email": "islem.m@example.com",
+    "password": "$2b$10$hashedpasswordexample19",
+    "role": "Driver",
+    "Car": "Hyundai i10",
+    "phoneNumber": 555667788
+  },
+  {
+    "name": "mounir cherif",
+    "email": "mounir.c@example.com",
+    "password": "$2b$10$hashedpasswordexample20",
+    "role": "Driver",
+    "Car": "Toyota Yaris",
+    "phoneNumber": 555778899
+  },
+  {
+    "name": "abdelghani boumediene",
+    "email": "abdelghani.b@example.com",
+    "password": "$2b$10$hashedpasswordexample21",
+    "role": "Driver",
+    "Car": "Renault Megane",
+    "phoneNumber": 555889900
+  },
+  {
+    "name": "faouzi zitouni",
+    "email": "faouzi.z@example.com",
+    "password": "$2b$10$hashedpasswordexample22",
+    "role": "Driver",
+    "Car": "Dacia Sandero",
+    "phoneNumber": 555990011
+  },
+  {
+    "name": "hicham belkacem",
+    "email": "hicham.b@example.com",
+    "password": "$2b$10$hashedpasswordexample23",
+    "role": "Driver",
+    "Car": "Skoda Octavia",
+    "phoneNumber": 555101010
+  },
+  {
+    "name": "djamel boudraa",
+    "email": "djamel.b@example.com",
+    "password": "$2b$10$hashedpasswordexample24",
+    "role": "Driver",
+    "Car": "Seat Leon",
+    "phoneNumber": 555202020
+  },
+  {
+    "name": "noureddine touati",
+    "email": "noureddine.t@example.com",
+    "password": "$2b$10$hashedpasswordexample25",
+    "role": "Driver",
+    "Car": "Peugeot 3008",
+    "phoneNumber": 555303030
+  },
+  {
+    "name": "rachid hamzaoui",
+    "email": "rachid.h@example.com",
+    "password": "$2b$10$hashedpasswordexample26",
+    "role": "Driver",
+    "Car": "Hyundai Tucson",
+    "phoneNumber": 555404040
+  },
+  {
+    "name": "mounir bensaid",
+    "email": "mounir.bs@example.com",
+    "password": "$2b$10$hashedpasswordexample27",
+    "role": "Driver",
+    "Car": "Kia Sportage",
+    "phoneNumber": 555505050
+  },
+  {
+    "name": "nacereddine kaci",
+    "email": "nacereddine.k@example.com",
+    "password": "$2b$10$hashedpasswordexample28",
+    "role": "Driver",
+    "Car": "Renault Clio",
+    "phoneNumber": 555606060
+  },
+  {
+    "name": "azzedine mameri",
+    "email": "azzedine.m@example.com",
+    "password": "$2b$10$hashedpasswordexample29",
+    "role": "Driver",
+    "Car": "Volkswagen Passat",
+    "phoneNumber": 555707070
+  },
+  {
+    "name": "lotfi braimi",
+    "email": "lotfi.b@example.com",
+    "password": "$2b$10$hashedpasswordexample30",
+    "role": "Driver",
+    "Car": "Dacia Logan",
+    "phoneNumber": 555808080
+  },
+  {
+    "name": "cherif bouaziz",
+    "email": "cherif.b@example.com",
+    "password": "$2b$10$hashedpasswordexample31",
+    "role": "Driver",
+    "Car": "Toyota Corolla",
+    "phoneNumber": 555909090
+  },
+  {
+    "name": "zohir meftah",
+    "email": "zohir.m@example.com",
+    "password": "$2b$10$hashedpasswordexample32",
+    "role": "Driver",
+    "Car": "Nissan Qashqai",
+    "phoneNumber": 555121212
+  },
+  {
+    "name": "abdelhalim zerdoud",
+    "email": "abdelhalim.z@example.com",
+    "password": "$2b$10$hashedpasswordexample33",
+    "role": "Driver",
+    "Car": "Hyundai Accent",
+    "phoneNumber": 555131313
+  },
+  {
+    "name": "mounir kerdoud",
+    "email": "mounir.k@example.com",
+    "password": "$2b$10$hashedpasswordexample34",
+    "role": "Driver",
+    "Car": "Renault Symbol",
+    "phoneNumber": 555141414
+  },
+  {
+    "name": "toufik belahmer",
+    "email": "toufik.b@example.com",
+    "password": "$2b$10$hashedpasswordexample35",
+    "role": "Driver",
+    "Car": "Peugeot 301",
+    "phoneNumber": 555151515
+  },
+  {
+    "name": "el hadi boudjellal",
+    "email": "elhadi.b@example.com",
+    "password": "$2b$10$hashedpasswordexample36",
+    "role": "Driver",
+    "Car": "Kia Rio",
+    "phoneNumber": 555161616
+  },
+  {
+    "name": "salah eddine djamel",
+    "email": "salaheddine.d@example.com",
+    "password": "$2b$10$hashedpasswordexample37",
+    "role": "Driver",
+    "Car": "Volkswagen Polo",
+    "phoneNumber": 555171717
+  },
+  {
+    "name": "okba ibrahimi",
+    "email": "okba.i@example.com",
+    "password": "$2b$10$hashedpasswordexample38",
+    "role": "Driver",
+    "Car": "Dacia Duster",
+    "phoneNumber": 555181818
+  },
+  {
+    "name": "abdelmalek guellil",
+    "email": "abdelmalek.g@example.com",
+    "password": "$2b$10$hashedpasswordexample39",
+    "role": "Driver",
+    "Car": "Skoda Rapid",
+    "phoneNumber": 555191919
+  },
+  {
+    "name": "brahim ould ali",
+    "email": "brahim.oa@example.com",
+    "password": "$2b$10$hashedpasswordexample40",
+    "role": "Driver",
+    "Car": "Seat Ibiza",
+    "phoneNumber": 555202122
+  },
+  {
+    "name": "mourad khedir",
+    "email": "mourad.k@example.com",
+    "password": "$2b$10$hashedpasswordexample41",
+    "role": "Driver",
+    "Car": "Hyundai Elantra",
+    "phoneNumber": 555212223
+  },
+  {
+    "name": "larbi bouanane",
+    "email": "larbi.b@example.com",
+    "password": "$2b$10$hashedpasswordexample42",
+    "role": "Driver",
+    "Car": "Renault Megane",
+    "phoneNumber": 555222324
+  },
+  {
+    "name": "tayeb meghraoui",
+    "email": "tayeb.m@example.com",
+    "password": "$2b$10$hashedpasswordexample43",
+    "role": "Driver",
+    "Car": "Toyota Yaris",
+    "phoneNumber": 555232325
+  },
+  {
+    "name": "hakim tounsi",
+    "email": "hakim.t@example.com",
+    "password": "$2b$10$hashedpasswordexample44",
+    "role": "Driver",
+    "Car": "Citroen C-Elysee",
+    "phoneNumber": 555242426
+  },
+  {
+    "name": "sid ali belhocine",
+    "email": "sidali.b@example.com",
+    "password": "$2b$10$hashedpasswordexample45",
+    "role": "Driver",
+    "Car": "Peugeot 208",
+    "phoneNumber": 555252527
+  },
+  {
+    "name": "abdelkrim amrouche",
+    "email": "abdelkrim.a@example.com",
+    "password": "$2b$10$hashedpasswordexample46",
+    "role": "Driver",
+    "Car": "Dacia Sandero",
+    "phoneNumber": 555262628
+  },
+  {
+    "name": "mounir zerrouki",
+    "email": "mounir.z@example.com",
+    "password": "$2b$10$hashedpasswordexample47",
+    "role": "Driver",
+    "Car": "Hyundai i10",
+    "phoneNumber": 555272729
+  },
+  {
+    "name": "fares boughalem",
+    "email": "fares.b@example.com",
+    "password": "$2b$10$hashedpasswordexample48",
+    "role": "Driver",
+    "Car": "Renault Logan",
+    "phoneNumber": 555282830
+  },
+  {
+    "name": "zakaria bouzid",
+    "email": "zakaria.b@example.com",
+    "password": "$2b$10$hashedpasswordexample49",
+    "role": "Driver",
+    "Car": "Kia Picanto",
+    "phoneNumber": 555292931
+  },
+  {
+    "name": "amine kaddour",
+    "email": "amine.k@example.com",
+    "password": "$2b$10$hashedpasswordexample50",
+    "role": "Driver",
+    "Car": "Volkswagen Golf",
+    "phoneNumber": 555303032
+  },
+  {
+    "name": "ismail lahouel",
+    "email": "ismail.l@example.com",
+    "password": "$2b$10$hashedpasswordexample51",
+    "role": "Driver",
+    "Car": "Nissan Sunny",
+    "phoneNumber": 555313133
+  },
+  {
+    "name": "walid hachani",
+    "email": "walid.h@example.com",
+    "password": "$2b$10$hashedpasswordexample52",
+    "role": "Driver",
+    "Car": "Skoda Octavia",
+    "phoneNumber": 555323234
+  },
+  {
+    "name": "bilal mehenni",
+    "email": "bilal.m@example.com",
+    "password": "$2b$10$hashedpasswordexample53",
+    "role": "Driver",
+    "Car": "Seat Leon",
+    "phoneNumber": 555333335
+  },
+  {
+    "name": "sofiane ziane",
+    "email": "sofiane.z@example.com",
+    "password": "$2b$10$hashedpasswordexample54",
+    "role": "Driver",
+    "Car": "Hyundai Tucson",
+    "phoneNumber": 555343436
+  },
+  {
+    "name": "khaled bensaad",
+    "email": "khaled.bs@example.com",
+    "password": "$2b$10$hashedpasswordexample55",
+    "role": "Driver",
+    "Car": "Renault Symbol",
+    "phoneNumber": 555353537
+  },
+  {
+    "name": "hamza cherif",
+    "email": "hamza.c@example.com",
+    "password": "$2b$10$hashedpasswordexample56",
+    "role": "Driver",
+    "Car": "Dacia Logan",
+    "phoneNumber": 555363638
+  },
+  {
+    "name": "karim boudjema",
+    "email": "karim.bj@example.com",
+    "password": "$2b$10$hashedpasswordexample57",
+    "role": "Driver",
+    "Car": "Toyota Corolla",
+    "phoneNumber": 555373739
+  },
+  {
+    "name": "nabil amrani",
+    "email": "nabil.am@example.com",
+    "password": "$2b$10$hashedpasswordexample58",
+    "role": "Driver",
+    "Car": "Peugeot 301",
+    "phoneNumber": 555383840
+  },
+  {
+    "name": "riad benyahia",
+    "email": "riad.by@example.com",
+    "password": "$2b$10$hashedpasswordexample59",
+    "role": "Driver",
+    "Car": "Kia Rio",
+    "phoneNumber": 555393941
+  },
+  {
+    "name": "tarik boudiaf",
+    "email": "tarik.bo@example.com",
+    "password": "$2b$10$hashedpasswordexample60",
+    "role": "Driver",
+    "Car": "Volkswagen Polo",
+    "phoneNumber": 555404042
+  },
+  {
+    "name": "samir fatmi",
+    "email": "samir.f@example.com",
+    "password": "$2b$10$hashedpasswordexample61",
+    "role": "Driver",
+    "Car": "Hyundai Accent",
+    "phoneNumber": 555414143
+  },
+  {
+    "name": "mustapha kaci",
+    "email": "mustapha.k@example.com",
+    "password": "$2b$10$hashedpasswordexample62",
+    "role": "Driver",
+    "Car": "Renault Clio",
+    "phoneNumber": 555424244
+  },
+  {
+    "name": "redouane ould",
+    "email": "redouane.ou@example.com",
+    "password": "$2b$10$hashedpasswordexample63",
+    "role": "Driver",
+    "Car": "Dacia Duster",
+    "phoneNumber": 555434345
+  },
+  {
+    "name": "ahmed meziane",
+    "email": "ahmed.me@example.com",
+    "password": "$2b$10$hashedpasswordexample64",
+    "role": "Driver",
+    "Car": "Skoda Rapid",
+    "phoneNumber": 555444446
+  },
+  {
+    "name": "kamel lamine",
+    "email": "kamel.l@example.com",
+    "password": "$2b$10$hashedpasswordexample65",
+    "role": "Driver",
+    "Car": "Seat Ibiza",
+    "phoneNumber": 555454547
+  },
+  {
+    "name": "mohamed khelladi",
+    "email": "mohamed.kh@example.com",
+    "password": "$2b$10$hashedpasswordexample66",
+    "role": "Driver",
+    "Car": "Hyundai Elantra",
+    "phoneNumber": 555464648
+  },
+  {
+    "name": "salim guergour",
+    "email": "salim.g@example.com",
+    "password": "$2b$10$hashedpasswordexample67",
+    "role": "Driver",
+    "Car": "Renault Megane",
+    "phoneNumber": 555474749
+  },
+  {
+    "name": "omar sassi",
+    "email": "omar.s@example.com",
+    "password": "$2b$10$hashedpasswordexample68",
+    "role": "Driver",
+    "Car": "Toyota Yaris",
+    "phoneNumber": 555484850
+  },
+  {
+    "name": "yacine merad",
+    "email": "yacine.me@example.com",
+    "password": "$2b$10$hashedpasswordexample69",
+    "role": "Driver",
+    "Car": "Citroen C-Elysee",
+    "phoneNumber": 555494951
+  },
+  {
+    "name": "islem djelloul",
+    "email": "islem.d@example.com",
+    "password": "$2b$10$hashedpasswordexample70",
+    "role": "Driver",
+    "Car": "Peugeot 208",
+    "phoneNumber": 555505052
+  },
+  {
+    "name": "mounir saadi",
+    "email": "mounir.sa@example.com",
+    "password": "$2b$10$hashedpasswordexample71",
+    "role": "Driver",
+    "Car": "Dacia Sandero",
+    "phoneNumber": 555515153
+  },
+  {
+    "name": "abdelghani boukhalfa",
+    "email": "abdelghani.bk@example.com",
+    "password": "$2b$10$hashedpasswordexample72",
+    "role": "Driver",
+    "Car": "Hyundai i10",
+    "phoneNumber": 555525254
+  },
+  {
+    "name": "faouzi kaddour",
+    "email": "faouzi.k@example.com",
+    "password": "$2b$10$hashedpasswordexample73",
+    "role": "Driver",
+    "Car": "Renault Logan",
+    "phoneNumber": 555535355
+  },
+  {
+    "name": "hicham amrani",
+    "email": "hicham.am@example.com",
+    "password": "$2b$10$hashedpasswordexample74",
+    "role": "Driver",
+    "Car": "Kia Picanto",
+    "phoneNumber": 555545456
+  },
+  {
+    "name": "djamel benyahia",
+    "email": "djamel.by@example.com",
+    "password": "$2b$10$hashedpasswordexample75",
+    "role": "Driver",
+    "Car": "Volkswagen Golf",
+    "phoneNumber": 555555557
+  },
+  {
+    "name": "noureddine boudiaf",
+    "email": "noureddine.bo@example.com",
+    "password": "$2b$10$hashedpasswordexample76",
+    "role": "Driver",
+    "Car": "Nissan Sunny",
+    "phoneNumber": 555565658
+  },
+  {
+    "name": "rachid bensaad",
+    "email": "rachid.bs@example.com",
+    "password": "$2b$10$hashedpasswordexample77",
+    "role": "Driver",
+    "Car": "Skoda Octavia",
+    "phoneNumber": 555575759
+  },
+  {
+    "name": "mounir cherif",
+    "email": "mounir.ch@example.com",
+    "password": "$2b$10$hashedpasswordexample78",
+    "role": "Driver",
+    "Car": "Seat Leon",
+    "phoneNumber": 555585860
+  },
+  {
+    "name": "nacereddine boudjema",
+    "email": "nacereddine.bj@example.com",
+    "password": "$2b$10$hashedpasswordexample79",
+    "role": "Driver",
+    "Car": "Hyundai Tucson",
+    "phoneNumber": 555595961
+  },
+  {
+    "name": "azzedine amrani",
+    "email": "azzedine.am@example.com",
+    "password": "$2b$10$hashedpasswordexample80",
+    "role": "Driver",
+    "Car": "Renault Symbol",
+    "phoneNumber": 555606062
+  },
+  {
+    "name": "lotfi benyahia",
+    "email": "lotfi.by@example.com",
+    "password": "$2b$10$hashedpasswordexample81",
+    "role": "Driver",
+    "Car": "Dacia Logan",
+    "phoneNumber": 555616163
+  },
+  {
+    "name": "cherif boudiaf",
+    "email": "cherif.bo@example.com",
+    "password": "$2b$10$hashedpasswordexample82",
+    "role": "Driver",
+    "Car": "Toyota Corolla",
+    "phoneNumber": 555626264
+  },
+  {
+    "name": "zohir bensaad",
+    "email": "zohir.bs@example.com",
+    "password": "$2b$10$hashedpasswordexample83",
+    "role": "Driver",
+    "Car": "Peugeot 301",
+    "phoneNumber": 555636365
+  },
+  {
+    "name": "abdelhalim cherif",
+    "email": "abdelhalim.c@example.com",
+    "password": "$2b$10$hashedpasswordexample84",
+    "role": "Driver",
+    "Car": "Kia Rio",
+    "phoneNumber": 555646466
+  },
+  {
+    "name": "mounir boudjema",
+    "email": "mounir.bj@example.com",
+    "password": "$2b$10$hashedpasswordexample85",
+    "role": "Driver",
+    "Car": "Volkswagen Polo",
+    "phoneNumber": 555656567
+  },
+  {
+    "name": "toufik amrani",
+    "email": "toufik.am@example.com",
+    "password": "$2b$10$hashedpasswordexample86",
+    "role": "Driver",
+    "Car": "Hyundai Accent",
+    "phoneNumber": 555666668
+  },
+  {
+    "name": "el hadi benyahia",
+    "email": "elhadi.by@example.com",
+    "password": "$2b$10$hashedpasswordexample87",
+    "role": "Driver",
+    "Car": "Renault Clio",
+    "phoneNumber": 555676769
+  },
+  {
+    "name": "salah eddine boudiaf",
+    "email": "salaheddine.bo@example.com",
+    "password": "$2b$10$hashedpasswordexample88",
+    "role": "Driver",
+    "Car": "Dacia Duster",
+    "phoneNumber": 555686870
+  },
+  {
+    "name": "okba bensaad",
+    "email": "okba.bs@example.com",
+    "password": "$2b$10$hashedpasswordexample89",
+    "role": "Driver",
+    "Car": "Skoda Rapid",
+    "phoneNumber": 555696971
+  },
+  {
+    "name": "abdelmalek cherif",
+    "email": "abdelmalek.c@example.com",
+    "password": "$2b$10$hashedpasswordexample90",
+    "role": "Driver",
+    "Car": "Seat Ibiza",
+    "phoneNumber": 555707072
+  },
+  {
+    "name": "brahim boudjema",
+    "email": "brahim.bj@example.com",
+    "password": "$2b$10$hashedpasswordexample91",
+    "role": "Driver",
+    "Car": "Hyundai Elantra",
+    "phoneNumber": 555717173
+  },
+  {
+    "name": "mourad amrani",
+    "email": "mourad.am@example.com",
+    "password": "$2b$10$hashedpasswordexample92",
+    "role": "Driver",
+    "Car": "Renault Megane",
+    "phoneNumber": 555727274
+  },
+  {
+    "name": "larbi benyahia",
+    "email": "larbi.by@example.com",
+    "password": "$2b$10$hashedpasswordexample93",
+    "role": "Driver",
+    "Car": "Toyota Yaris",
+    "phoneNumber": 555737375
+  },
+  {
+    "name": "tayeb boudiaf",
+    "email": "tayeb.bo@example.com",
+    "password": "$2b$10$hashedpasswordexample94",
+    "role": "Driver",
+    "Car": "Citroen C-Elysee",
+    "phoneNumber": 555747476
+  },
+  {
+    "name": "hakim bensaad",
+    "email": "hakim.bs@example.com",
+    "password": "$2b$10$hashedpasswordexample95",
+    "role": "Driver",
+    "Car": "Peugeot 208",
+    "phoneNumber": 555757577
+  },
+  {
+    "name": "sid ali cherif",
+    "email": "sidali.c@example.com",
+    "password": "$2b$10$hashedpasswordexample96",
+    "role": "Driver",
+    "Car": "Dacia Sandero",
+    "phoneNumber": 555767678
+  },
+  {
+    "name": "abdelkrim boudjema",
+    "email": "abdelkrim.bj@example.com",
+    "password": "$2b$10$hashedpasswordexample97",
+    "role": "Driver",
+    "Car": "Hyundai i10",
+    "phoneNumber": 555777779
+  },
+  {
+    "name": "mounir amrani",
+    "email": "mounir.am@example.com",
+    "password": "$2b$10$hashedpasswordexample98",
+    "role": "Driver",
+    "Car": "Renault Logan",
+    "phoneNumber": 555787880
+  },
+  {
+    "name": "fares benyahia",
+    "email": "fares.by@example.com",
+    "password": "$2b$10$hashedpasswordexample99",
+    "role": "Driver",
+    "Car": "Kia Picanto",
+    "phoneNumber": 555788881
+  },
+  {
+    "name": "zakaria boudiaf",
+    "email": "zakaria.bo@example.com",
+    "password": "$2b$10$hashedpasswordexample100",
+    "role": "Driver",
+    "Car": "Volkswagen Golf",
+    "phoneNumber": 555798982
+  }
+]
