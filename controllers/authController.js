@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const generateToken = require('../utils/generateToken')
 const coonectedDatabase = require("../connection/connection");
 const { User, Driver, Customer } = require("../models/typeOfUsers");
 
@@ -119,16 +120,14 @@ const getProfile = async (req , res) => {
 } 
 
 const googleAuth = async (req, res) => {
-  const { role } = req.body; 
+  const { role } = req.body;    
 
   try {
     await coonectedDatabase();
 
-    // req.authUser comes directly from your verifySupabaseToken middleware
     const { id: supabaseId, email, user_metadata } = req.authUser;
     const normalizedEmail = email.toLowerCase().trim();
     
-    // Extract name from Google metadata or fallback to email prefix
     const rawName = user_metadata?.full_name || user_metadata?.name || normalizedEmail.split('@')[0];
 
     // 1. Check if user already exists in MongoDB by supabaseId or email
@@ -137,58 +136,60 @@ const googleAuth = async (req, res) => {
     });
 
     if (existingUser) {
-      // If they originally registered with email/password, bind their new supabaseId
       if (!existingUser.supabaseId) {
         existingUser.supabaseId = supabaseId;
         await existingUser.save();
       }
 
-      // Remove password before sending user data in response
       const userResponse = existingUser.toObject();
       delete userResponse.password;
-
+       const token = generateToken(existingUser._id)
+      // FIX ADDED HERE: Include success: true
       return res.status(200).json({
+        success: true,
         msg: "Google user logged in successfully",
+        token : token ,
         data: userResponse,
       });
     }
 
     // 2. If user doesn't exist, register them based on the requested role
     if (!role || (role !== "Driver" && role !== "Customer")) {
-      return res.status(400).json({ msg: "Invalid or missing role specified for Google registration" });
+      return res.status(400).json({ success: false, msg: "Invalid or missing role specified for Google registration" });
     }
 
     let newUser;
     if (role === "Driver") {
       newUser = await Driver.create({
         supabaseId,
-        name: rawName.toLowerCase().trim(),
+        name: rawName.trim(), // Optional: kept original casing instead of forcing lowercase
         email: normalizedEmail,
         role: "Driver",
       });
     } else if (role === "Customer") {
       newUser = await Customer.create({
         supabaseId,
-        name: rawName.toLowerCase().trim(),
+        name: rawName.trim(),
         email: normalizedEmail,
         role: "Customer",
       });
     }
 
-    // Remove password field before response
     const userResponse = newUser.toObject();
     delete userResponse.password;
-
+    const token = generateToken(newUser._id)
+    // FIX ADDED HERE: Include success: true
     return res.status(201).json({
+      success: true,
       msg: "User registered successfully via Google Auth",
+   token: token,
       data: userResponse,
     });
 
   } catch (error) {
-    return res.status(500).json({ message: "Server error", error: error.message });
+    return res.status(500).json({ success: false, message: "Server error", error: error.message });
   }
-};
-
+}; 
 module.exports = {
   register,
   login,

@@ -8,7 +8,12 @@ const addProductToOrder = async (req, res) => {
     await coonectedDatabase();
 
     const userId = req.user.id;
-    const productData = req.body;
+    const { productId } = req.body;
+    if (!productId) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Product ID is required" });
+    }
 
     let order = await Order.findOne({ userId, status: "active" });
 
@@ -16,7 +21,7 @@ const addProductToOrder = async (req, res) => {
       order = new Order({ userId, items: [], status: "active" });
     }
 
-    order.items.push(productData);
+    order.items.push({ productId: Number(productId) });
 
     await order.save();
     return res.status(200).json({ success: true, data: order });
@@ -128,7 +133,6 @@ const confirmOrder = async (req, res) => {
         .status(404)
         .json({ message: "No active order found or cart is empty." });
     }
-  
 
     // 2. Create the permanent ConfirmedOrder document
     const createdConfirmedOrder = await confirmedOrder.create({
@@ -143,6 +147,17 @@ const confirmOrder = async (req, res) => {
           shippingAddress.formattedAddress || shippingAddress.street,
         lat: shippingAddress.lat || null,
         lng: shippingAddress.lng || null,
+      },
+      // GEOLOCATION FOR DRIVER HUB: MongoDB's $geoNear pipeline strictly requires
+      // a root-level GeoJSON 'location' field with [longitude, latitude] coordinates.
+      // We pull them from shippingAddress so drivers can locate and accept this order
+      
+      location: {
+        type: "Point",
+        coordinates: [
+          parseFloat(shippingAddress.lng) || 0, // Longitude comes FIRST
+          parseFloat(shippingAddress.lat) || 0, // Latitude comes SECOND
+        ],
       },
       paymentMethod: paymentMethod || "Cash on Delivery",
       paymentStatus: "pending",

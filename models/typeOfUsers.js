@@ -30,7 +30,13 @@ const Driver = User.discriminator(
   new mongoose.Schema({
     Car: { type: String },
     phoneNumber: { type: Number },
+    //add new document 
+    assigned : {
+      type : Boolean ,
+      default : false 
+    }
   }),
+
 );
 
 const Customer = User.discriminator(

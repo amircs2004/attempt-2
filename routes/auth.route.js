@@ -14,6 +14,6 @@ router.post('/register' , register)
 router.post('/login' , login)
 router.post('/logout' , logout)
 router.get('/user' , protect , getProfile )
-router.get('/google-auth' , verifySupabaseToken , googleAuth )
+router.post('/google-auth' , verifySupabaseToken , googleAuth )
 
 module.exports = router

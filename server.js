@@ -8,6 +8,7 @@ const bddconnectionTest = require('./routes/bdd.route')
 const authControllers = require('./routes/auth.route')
 const ClientProductRoutes = require('./routes/product.route')
 const adminRoutes = require('./routes/adlin.route')
+const driverRoute = require('./routes/driver.route')
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 
@@ -39,12 +40,13 @@ app.use(
 );
 app.use(cookieParser());
 // 4. Payload Size Limiting (Prevents attackers from sending massive 50MB JSON payloads)
+app.set('trust proxy', 1);
 app.use(express.json({ limit: "10kb" }));
  app.use('/api' , bddconnectionTest)
  app.use('/api' , authControllers)
  app.use('/api' , ClientProductRoutes)
  app.use('/api' , adminRoutes)
-
+ app.use('/api' , driverRoute)
 
 
 
