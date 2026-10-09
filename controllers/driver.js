@@ -61,46 +61,100 @@ const getNearestOrderForDriver = async (req , res) => {
   }
 }
 
-const assigneDriver = async (req , res) => {
-  try{
-     await coonectedDatabase();
-    const driverId = req.user?.id || req.user?._id;
-    if(!driverId){
-      return res.status(400).json({success : false , message : "Driver ID is missing "})
+const assigneDriver = async (req, res) => {
+  try {
+    console.log("=== START: assigneDriver Controller Called ===");
+    
+    // 1. Log headers to verify if the Authorization Bearer token is arriving
+    console.log("Headers received:", {
+      authorization: req.headers.authorization ? "Bearer token present" : "MISSING AUTHORIZATION HEADER",
+      rawAuthorization: req.headers.authorization
+    });
+
+    // 2. Log what the protect middleware attached to req.user
+    console.log("req.user object:", req.user);
+
+    await coonectedDatabase();
+
+    const driverId = req.user?.id || req.user?._id || req.user?.userId;
+    console.log("Extracted driverId:", driverId);
+
+    if (!driverId) {
+      console.log("❌ FAILURE: Driver ID is missing. req.user did not contain 'id', '_id', or 'userId'.");
+      return res.status(400).json({ success: false, message: "Driver ID is missing" });
     }
 
-    //for now we use req.body 
-    const  confirmedOrderId = req.body?._id
-    const assignedDriver = await Driver.findByIdAndUpdate(driverId , { assigned: true } , {new : true})
-    
-     const assignedOrder = await ConfirmedOrder.findOneAndUpdate(
+    // 3. Log request body to check the order ID
+    console.log("Request body received:", req.body);
+    const confirmedOrderId = req.body?._id;
+    console.log("Extracted confirmedOrderId:", confirmedOrderId);
+
+    if (!confirmedOrderId) {
+      console.log("❌ FAILURE: Order ID (_id) is missing from req.body.");
+      return res.status(400).json({ success: false, message: "Order ID is missing" });
+    }
+
+    const assignedDriver = await Driver.findByIdAndUpdate(
+      driverId, 
+      { assigned: true }, 
+      { new: true }
+    );
+    console.log("Database Driver found & updated:", assignedDriver ? assignedDriver._id : "NOT FOUND");
+
+    if (!assignedDriver) {
+      return res.status(404).json({ success: false, message: "Driver not found" });
+    }
+
+    const assignedOrder = await ConfirmedOrder.findOneAndUpdate(
       { _id: confirmedOrderId, orderStatus: "processing" },
       { 
         orderStatus: "assigned", 
         assignedDriver: driverId 
       },
       { new: true }
-    ); 
+    );
+    console.log("Database Order found & updated:", assignedOrder ? assignedOrder._id : "NOT FOUND OR ALREADY ASSIGNED");
 
-     if(!assignedOrder){
+    if (!assignedOrder) {
       await Driver.findByIdAndUpdate(driverId, { assigned: false });
-    return res.status(404).json({success : false , message : "Order not found"} )
-     }
-    if(!assignedDriver){
-      return res.status(404).json({success : false , message : "Driver not found"} )
+      return res.status(404).json({ success: false, message: "Order not found" });
     }
-     
-    //we also have to update the status of the order 
-    return res.status(200).json({success : true , message : "Driver assigned successfully" , assignedOrder , assignedDriver})
+
+    console.log("=== SUCCESS: Driver assigned successfully ===");
+    return res.status(200).json({ 
+      success: true, 
+      message: "Driver assigned successfully", 
+      assignedOrder, 
+      assignedDriver 
+    });
+
+  } catch (error) {
+    console.error("🔥 Error in assigneDriver catch block:", error);
+    return res.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+};
+
+const getDriverOrders = async (req , res) => {
+  try{
+    await coonectedDatabase()
+    const driver = req.user?._id ||req.user.id || req.user?.userId;
+
+     if(!driver){
+      return res.status(400).json({success: false , message: "Driver id is missing"}) 
+     }
+  const driverAcceptedOrders = await ConfirmedOrder.find({assignedDriver: driver}).sort({ createdAt: -1 });
+ if(!driverAcceptedOrders){
+  return res.status(404).json({success: false , message: "No orders found for this driver"})  
+ }
+  return res.status(200).json({success: true , count: driverAcceptedOrders.length ,data: driverAcceptedOrders}) 
 
   }catch(error){
-    console.error("Error in assigneDriver:", error);
-    return res.status(500).json({ success: false, error: "Internal Server Error" });
+    return res.status(500).json({success: false , message: "Server error"})
   }
 }
 
-
 module.exports = {
     getNearestOrderForDriver ,
-    assigneDriver
+    assigneDriver , 
+    getDriverOrders
 }

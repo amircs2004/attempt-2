@@ -6,5 +6,5 @@ const createAdminByAdmin = require('../controllers/authForAdmin')
 const restrictTo = require('../middleware/restrictedTo')
 
 router.post('/create-admin', protect, restrictTo('Admin'), createAdminByAdmin);
-router.post('/assign-driver' , protect , assignDriverToOrder )
+//router.post('/assign-driver' , protect , assignDriverToOrder )
 module.exports = router
