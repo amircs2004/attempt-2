@@ -1,11 +1,12 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const generateToken = require('../utils/generateToken')
+const generateToken = require("../utils/generateToken");
 const coonectedDatabase = require("../connection/connection");
 const { User, Driver, Customer } = require("../models/typeOfUsers");
 
 const register = async (req, res) => {
   const { name, email, password, role } = req.body;
+
   try {
     await coonectedDatabase();
     const foundUser = await User.findOne({ email: email.toLowerCase().trim() });
@@ -42,9 +43,7 @@ const register = async (req, res) => {
         id: newUser._id,
         role: "Customer",
       };
-    } 
-    
-    else {
+    } else {
       return res.status(400).json({ msg: "Invalid or missing role specified" });
     }
 
@@ -66,7 +65,7 @@ const login = async (req, res) => {
 
   try {
     await coonectedDatabase();
-    const foundUser = await User.findOne({ email : email.toLowerCase().trim()});
+    const foundUser = await User.findOne({ email: email.toLowerCase().trim() });
     if (!foundUser) {
       return res.status(404).json({ msg: "user not found" });
     }
@@ -96,43 +95,43 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-    try {
+  try {
     return res.status(200).json({
-      msg: "logged out successfully"
+      msg: "logged out successfully",
     });
   } catch (error) {
     return res.status(500).json({ msg: "error" });
   }
 };
-const getProfile = async (req , res) => {
-   try {
+const getProfile = async (req, res) => {
+  try {
+    await coonectedDatabase();
 
-    await coonectedDatabase() 
+    const userAccount = await User.findById(req.user.id);
 
-    const userAccount = await User.findById(req.user.id)
-
-    return  res.status(200).json({ data: userAccount });
- 
-   } catch (error) {
-   return res.status(500).json({ message: "Server error" });
-      
-   }
-} 
+    return res.status(200).json({ data: userAccount });
+  } catch (error) {
+    return res.status(500).json({ message: "Server error" });
+  }
+};
 
 const googleAuth = async (req, res) => {
-  const { role } = req.body;    
+  const { role } = req.body;
 
   try {
     await coonectedDatabase();
 
     const { id: supabaseId, email, user_metadata } = req.authUser;
     const normalizedEmail = email.toLowerCase().trim();
-    
-    const rawName = user_metadata?.full_name || user_metadata?.name || normalizedEmail.split('@')[0];
+
+    const rawName =
+      user_metadata?.full_name ||
+      user_metadata?.name ||
+      normalizedEmail.split("@")[0];
 
     // 1. Check if user already exists in MongoDB by supabaseId or email
-    let existingUser = await User.findOne({ 
-      $or: [{ supabaseId }, { email: normalizedEmail }] 
+    let existingUser = await User.findOne({
+      $or: [{ supabaseId }, { email: normalizedEmail }],
     });
 
     if (existingUser) {
@@ -143,19 +142,22 @@ const googleAuth = async (req, res) => {
 
       const userResponse = existingUser.toObject();
       delete userResponse.password;
-       const token = generateToken(existingUser._id)
+      const token = generateToken(existingUser._id);
       // FIX ADDED HERE: Include success: true
       return res.status(200).json({
         success: true,
         msg: "Google user logged in successfully",
-        token : token ,
+        token: token,
         data: userResponse,
       });
     }
 
     // 2. If user doesn't exist, register them based on the requested role
     if (!role || (role !== "Driver" && role !== "Customer")) {
-      return res.status(400).json({ success: false, msg: "Invalid or missing role specified for Google registration" });
+      return res.status(400).json({
+        success: false,
+        msg: "Invalid or missing role specified for Google registration",
+      });
     }
 
     let newUser;
@@ -177,23 +179,24 @@ const googleAuth = async (req, res) => {
 
     const userResponse = newUser.toObject();
     delete userResponse.password;
-    const token = generateToken(newUser._id)
+    const token = generateToken(newUser._id);
     // FIX ADDED HERE: Include success: true
     return res.status(201).json({
       success: true,
       msg: "User registered successfully via Google Auth",
-   token: token,
+      token: token,
       data: userResponse,
     });
-
   } catch (error) {
-    return res.status(500).json({ success: false, message: "Server error", error: error.message });
+    return res
+      .status(500)
+      .json({ success: false, message: "Server error", error: error.message });
   }
-}; 
+};
 module.exports = {
   register,
   login,
   logout,
-  getProfile , 
-  googleAuth
+  getProfile,
+  googleAuth,
 };

@@ -5,8 +5,8 @@ const protect = async (req , res ,next) => {
 
 const authHeader = req.headers.authorization 
     //mt cookie name is refresh 
-   let  token = req.cookies.refreshToken 
-   if (!token && authHeader && authHeader.startsWith('Bearer ')) {
+ 
+   if ( authHeader && authHeader.startsWith('Bearer ')) {
      token = authHeader.split(' ')[1];
    }
 
@@ -17,7 +17,7 @@ const authHeader = req.headers.authorization
     req.user = decoded 
     next()
    } catch (error) {
-    return res.status(401).json({ msg: "Not authorized, token failed" });
+    return res.status(401).json({ msg: "Not authorized, token failed"  , error: error.message});
    }
 }
 

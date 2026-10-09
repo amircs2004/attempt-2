@@ -11,6 +11,7 @@ const adminRoutes = require('./routes/adlin.route')
 const driverRoute = require('./routes/driver.route')
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const cookieParser = require('cookie-parser');
 
 
 //limitting the number of requests to prevent brute force attacks 
@@ -38,10 +39,11 @@ app.use(
      allowedHeaders : ['Content-Type' , 'Authorization' , 'Cookie']
   })
 );
-app.use(cookieParser());
+
 // 4. Payload Size Limiting (Prevents attackers from sending massive 50MB JSON payloads)
 app.set('trust proxy', 1);
 app.use(express.json({ limit: "10kb" }));
+app.use(cookieParser()); 
  app.use('/api' , bddconnectionTest)
  app.use('/api' , authControllers)
  app.use('/api' , ClientProductRoutes)
