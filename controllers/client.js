@@ -179,6 +179,23 @@ const confirmOrder = async (req, res) => {
       .json({ error: error.message || "Server error confirming order." });
   }
 };
+ const getAssignedDriver =  async (req , res) => {
+    try {
+     await coonectedDatabase() 
+     
+   const { assignedDriverToorder} = await confirmedOrder.find({_id : req.query.orderId  , orderStatus : 'assigned' }).populate('assignedDriver')
+    
+    if (!assignedDriverToorder){ 
+      return res.status(404).json({msg : 'no assigned driver for this order'})
+    }
+    return res.status(200).json(assignedDriverToorder)
+  }catch (error){
+        console.error("Confirm Order Error:", error);
+    return res
+      .status(500)
+      .json({ error: error.message || "Server error fetching  driover." });
+    }
+ }
 
 module.exports = {
   addProductToOrder,
@@ -186,4 +203,5 @@ module.exports = {
   getAllOrders,
   updateProductQuantityInOrder,
   confirmOrder,
+  getAssignedDriver 
 };

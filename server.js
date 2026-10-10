@@ -11,7 +11,6 @@ const adminRoutes = require('./routes/adlin.route')
 const driverRoute = require('./routes/driver.route')
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
-const cookieParser = require('cookie-parser');
 
 
 //limitting the number of requests to prevent brute force attacks 
