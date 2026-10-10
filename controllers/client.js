@@ -183,7 +183,7 @@ const confirmOrder = async (req, res) => {
     try {
      await coonectedDatabase() 
      
-   const { assignedDriverToorder} = await confirmedOrder.find({_id : req.query.orderId  , orderStatus : 'assigned' }).populate('assignedDriver')
+   const { assignedDriverToorder} = await confirmedOrder.find({_id : req.body.orderId  , orderStatus : 'assigned' }).populate('assignedDriver')
     
     if (!assignedDriverToorder){ 
       return res.status(404).json({msg : 'no assigned driver for this order'})

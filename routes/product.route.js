@@ -7,7 +7,7 @@ router.delete('/delete-product/:productId' , protect , removeProductFromOrder )
 router.get('/get-orders' , protect , getAllOrders)
 router.patch('/update-product-quantity/:productId' , protect , updateProductQuantityInOrder)
 router.post('/confirm-order' , protect , confirmOrder)
-router.get('/see-driver' , protect , getAssignedDriver)
+router.post('/see-driver' , protect , getAssignedDriver)
 
 
 module.exports = router
